@@ -20,6 +20,7 @@ const ChartMoneda = () => {
       "https://www.datos.gov.co/resource/32sa-8pi3.json"
     );
     const dolar = await axios.get("https://deploy-api-production-3131.up.railway.app/predicciones");
+    console.log(dolar);
     const dolarMañana = dolar.datos;
     console.log("dolar mañana", dolarMañana[dolarMañana.length - 2]);
     console.log("Monedaaaa en chart", res.data);
