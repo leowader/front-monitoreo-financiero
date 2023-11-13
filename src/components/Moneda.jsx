@@ -19,8 +19,8 @@ const ChartMoneda = () => {
     const res = await axios.get(
       "https://www.datos.gov.co/resource/32sa-8pi3.json"
     );
-    const dolar = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
-    const dolarMañana = dolar.data[6].datos;
+    const dolar = await axios.get("https://deploy-api-production-3131.up.railway.app/predicciones");
+    const dolarMañana = dolar.datos;
     console.log("dolar mañana", dolarMañana[dolarMañana.length - 2]);
     console.log("Monedaaaa en chart", res.data);
     const ipc = res.data;

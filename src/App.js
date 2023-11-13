@@ -9,6 +9,8 @@ import leo from "./assets/leo.jpg";
 import luis from "./assets/luis.jpg";
 import juan from "./assets/juan.jpg";
 import ChartMoneda from "./components/Moneda";
+import Acciones from "./components/Acciones";
+import AccionesTec from "./components/AccionesTec";
 
 function App() {
   const ingeniero = {
@@ -73,6 +75,10 @@ function App() {
         Monitoreo del dolar 2019-2023
       </h2>
       <ChartMoneda></ChartMoneda>
+      <h2 className="flex justify-center mt-4 mb-5 font-bold text-2xl  p-2 ">
+        Acciones
+      </h2>
+      <AccionesTec></AccionesTec>
     </div>
   );
 }
