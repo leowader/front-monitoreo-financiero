@@ -19,8 +19,14 @@ const ChartMoneda = () => {
     const res = await axios.get(
       "https://www.datos.gov.co/resource/32sa-8pi3.json"
     );
-    const dolar = await axios.get("https://deploy-api-production-3131.up.railway.app/predicciones");
-    console.log("predicion dolar peralta",dolar.data.datos);
+    const dolar = await axios.get(
+      "https://deploy-api-production-3131.up.railway.app/predicciones"
+    );
+    const MSFT = await axios.get(
+      "https://finviz.com/api/map_sparklines.ashx?t=MSFT%2CORCL%2CADBE%2CPANW%2CSNPS%2CFTNT%2CVRSN%2CFLT%2CAKAM%2CGEN%2CFFIV&ty=sec"
+    );
+    console.log("MICRIOFT",MSFT);
+    console.log("predicion dolar peralta", dolar.data.datos);
     const dolarMañana = dolar.data.datos;
     console.log("dolar mañana", dolarMañana[dolarMañana.length - 1]);
     console.log("Monedaaaa en chart", res.data);
