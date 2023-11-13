@@ -22,7 +22,7 @@ const ChartMoneda = () => {
     const dolar = await axios.get("https://deploy-api-production-3131.up.railway.app/predicciones");
     console.log("predicion dolar peralta",dolar.data.datos);
     const dolarMañana = dolar.data.datos;
-    console.log("dolar mañana", dolarMañana[dolarMañana.length - 2]);
+    console.log("dolar mañana", dolarMañana[dolarMañana.length - 1]);
     console.log("Monedaaaa en chart", res.data);
     const ipc = res.data;
     data = ipc.reverse().map((ip, index) => {
