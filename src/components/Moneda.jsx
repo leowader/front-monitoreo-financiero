@@ -31,7 +31,7 @@ const ChartMoneda = () => {
       return { time: fechaFormateada, value: parseFloat(ip.valor) };
     });
     console.log("mi data Moneda", data);
-    setPrediccion(dolarMañana[dolarMañana.length - 2]);
+    setPrediccion(dolarMañana[dolarMañana.length - 1]);
     setMidata(data);
   };
   if (loading === false) {
