@@ -69,7 +69,7 @@ export default function Acciones({ accion }) {
     }
   };
   useEffect(() => {
-    // cargar();
+    cargar();
     setInterval(cargar, 1800000);
     cargarDatosDesdeAlmacenamiento();
   }, []);
