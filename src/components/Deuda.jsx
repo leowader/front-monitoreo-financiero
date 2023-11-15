@@ -22,7 +22,7 @@ const ChartDeuda = () => {
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[3].datos);
-    const externa = res.data[3].datos;
+    const externa = res.data[7].datos;
     const inter = res.data[4].datos;
     const tot = res.data[5].datos;
     data = externa.map((ip, index) => {
