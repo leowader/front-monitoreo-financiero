@@ -17,7 +17,7 @@ const ChartComponent = () => {
   ];
 
   const getIndicadores = async () => {
-    const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
+    const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[0].datos);
     const ipc = res.data[0].datos;
     data = ipc.map((ip, index) => {

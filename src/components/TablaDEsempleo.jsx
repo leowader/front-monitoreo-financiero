@@ -5,7 +5,7 @@ export default function TablaDesempleo({ columnas, defaultData }) {
   const [midata, setMidata] = useState();
 
   const getIndicadores = async () => {
-    const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
+    const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[1].datos);
     const ipc = res.data[1].datos;
     // console.log("mi data2", ipc);

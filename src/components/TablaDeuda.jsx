@@ -6,7 +6,7 @@ export default function TablaDeuda({ columnas, defaultData }) {
   const [interna, setInterna] = useState();
   const [total, setTotal] = useState();
   const getIndicadores = async () => {
-    const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
+    const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[1].datos);
     const externa = res.data[3].datos;
     const inter = res.data[4].datos;

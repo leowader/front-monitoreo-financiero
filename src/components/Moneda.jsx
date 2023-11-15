@@ -33,19 +33,22 @@ const ChartMoneda = () => {
     // console.log("dolar mañana", dolarMañana[dolarMañana.length - 1]);
     // console.log("Monedaaaa en chart", res.data.datos);
     const ipc = res.data.datos;
-    data = ipc.map((ip, index) => {
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() +1);
+    let tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+    let objetoManana = ipc.find(item => item.ds === tomorrowFormatted);
+    console.log("predi dolar ",objetoManana);
+    setPrediccion(objetoManana);
+    const dolarFiltrados = ipc.filter(objeto => objeto.ds <= tomorrowFormatted);
+    console.log("dolar filter",dolarFiltrados);
+    data = dolarFiltrados.map((ip, index) => {
       // const fecha = new Date(ip.ds);
       // const fechaFormateada = fecha.toISOString().slice(0, 10); // Extrae el año, mes y día
       return { time: ip.ds, value: parseFloat(ip.yhat) };
     });
     // console.log("mi data Moneda", data);
    
-    let tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() );
-    let tomorrowFormatted = tomorrow.toISOString().split('T')[0];
-    let objetoManana = ipc.find(item => item.ds === tomorrowFormatted);
-    console.log("predi dolar ",objetoManana);
-    setPrediccion(objetoManana);
+    
     setMidata(data);
   };
   if (loading === false) {
