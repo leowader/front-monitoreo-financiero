@@ -17,13 +17,13 @@ const ChartPib = () => {
   ];
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
-    console.log(res.data[2].datos);
+    // console.log(res.data[2].datos);
     const ipc = res.data[2].datos;
     data = ipc.map((ip, index) => {
-      console.log("fecha pip", ip.ds);
+      // console.log("fecha pip", ip.ds);
       return { time: ip.ds, value: ip.yhat };
     });
-    console.log("mi data PIB", data);
+    // console.log("mi data PIB", data);
     setMidata(data);
   };
   if (loading === false) {
@@ -55,7 +55,7 @@ const ChartPib = () => {
       layout: {
         background: {
           type: "solid",
-          color: "#202123",
+          color: "#18191A",
         },
         textColor: "white",
       },
@@ -87,7 +87,7 @@ const ChartPib = () => {
     if (midata) {
       areaSeries.setData(midata);
     } else {
-      console.log("mi data?", midata);
+      // console.log("mi data?", midata);
     }
     areaSeries2.setData([]);
 

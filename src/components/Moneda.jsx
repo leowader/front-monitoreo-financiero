@@ -17,27 +17,35 @@ const ChartMoneda = () => {
   // ];
   const getIndicadores = async () => {
     const res = await axios.get(
-      "https://www.datos.gov.co/resource/32sa-8pi3.json"
-    );
-    const dolar = await axios.get(
       "https://deploy-api-production-3131.up.railway.app/predicciones"
     );
-    const MSFT = await axios.get(
-      "https://finviz.com/api/map_sparklines.ashx?t=MSFT%2CORCL%2CADBE%2CPANW%2CSNPS%2CFTNT%2CVRSN%2CFLT%2CAKAM%2CGEN%2CFFIV&ty=sec"
-    );
-    console.log("MICRIOFT",MSFT);
-    console.log("predicion dolar peralta", dolar.data.datos);
-    const dolarMañana = dolar.data.datos;
-    console.log("dolar mañana", dolarMañana[dolarMañana.length - 1]);
-    console.log("Monedaaaa en chart", res.data);
-    const ipc = res.data;
-    data = ipc.reverse().map((ip, index) => {
-      const fecha = new Date(ip.vigenciadesde);
-      const fechaFormateada = fecha.toISOString().slice(0, 10); // Extrae el año, mes y día
-      return { time: fechaFormateada, value: parseFloat(ip.valor) };
+    // const MSFT = await axios.get(
+    //   "http://api.marketstack.com/v1/eod?access_key=b2b6a982038bddd78ab29659ee0e665a&symbols=MSFT&ORCL"
+    // );
+
+    // console.log(
+    //   "valor",
+    //   MSFT.data.data[0].adj_close,
+    //   "name:",
+    //   MSFT.data.data[0].symbol
+    // );
+    // console.log("predicion dolar peralta", dolar.data.datos);
+    // console.log("dolar mañana", dolarMañana[dolarMañana.length - 1]);
+    // console.log("Monedaaaa en chart", res.data.datos);
+    const ipc = res.data.datos;
+    data = ipc.map((ip, index) => {
+      // const fecha = new Date(ip.ds);
+      // const fechaFormateada = fecha.toISOString().slice(0, 10); // Extrae el año, mes y día
+      return { time: ip.ds, value: parseFloat(ip.yhat) };
     });
-    console.log("mi data Moneda", data);
-    setPrediccion(dolarMañana[dolarMañana.length - 1]);
+    // console.log("mi data Moneda", data);
+   
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() );
+    let tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+    let objetoManana = ipc.find(item => item.ds === tomorrowFormatted);
+    console.log("predi dolar ",objetoManana);
+    setPrediccion(objetoManana);
     setMidata(data);
   };
   if (loading === false) {
@@ -53,7 +61,6 @@ const ChartMoneda = () => {
         chartRef.current.resize(containerWidth, height);
       }
     };
-
     chartRef.current = createChart(containerRef.current, {
       width,
       height,
@@ -70,7 +77,7 @@ const ChartMoneda = () => {
       layout: {
         background: {
           type: "solid",
-          color: "#202123",
+          color: "#18191A",
         },
         textColor: "white",
       },
@@ -94,9 +101,9 @@ const ChartMoneda = () => {
 
     if (midata) {
       areaSeries.setData(midata);
-      console.log("PRDICCION DOLAR", prediccion);
+      // console.log("PRDICCION DOLAR", prediccion);
     } else {
-      console.log("mi data?", midata);
+      // console.log("mi data?", midata);
     }
 
     const toolTipWidth = 80;
@@ -161,7 +168,7 @@ const ChartMoneda = () => {
         className="w-48 h-40 absolute hidden p-2 box-border text-sm text-left z-10 top-12 left-12 border border-[rgba(255, 82, 82, 1)] bg-white text-black"
       />
       <div className="h-28 block ">
-        <h3>Prediccion para la fecha {prediccion.ds}</h3>
+        <h3>Prediccion del dolar para la fecha {prediccion.ds}</h3>
         <h2>Valor </h2>
         <span className="text-[#9C27B0] font-bold">
           {prediccion.yhat ? prediccion.yhat.toFixed(2) : prediccion.yhat} COP

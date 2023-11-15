@@ -18,12 +18,12 @@ const ChartComponent = () => {
 
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
-    console.log(res.data[0].datos);
+    // console.log(res.data[0].datos);
     const ipc = res.data[0].datos;
     data = ipc.map((ip, index) => {
       return { time: ip.ds, value: ip.yhat };
     });
-    console.log("mi data", data);
+    // console.log("mi data", data);
     setMidata(data);
   };
   if (loading === false) {
@@ -50,7 +50,7 @@ const ChartComponent = () => {
       }
     };
 
-    console.log("aaa", midata);
+    // console.log("aaa", midata);
     var chart = createChart(container, {
       rightPriceScale: {
         scaleMargins: {
@@ -66,7 +66,7 @@ const ChartComponent = () => {
       layout: {
         background: {
           type: "solid",
-          color: "#202123",
+          color: "#18191A",
         },
 
         textColor: "white",
@@ -92,11 +92,11 @@ const ChartComponent = () => {
       lineColor: "rgba(0, 150, 136, 1)",
       lineWidth: 2,
     });
-    console.log("dta al argar ", midata);
+    // console.log("dta al argar ", midata);
     if (midata) {
       series.setData(midata);
     } else {
-      console.log("mi data?", midata);
+      // console.log("mi data?", midata);
     }
     chart.subscribeCrosshairMove((param) => {
       if (

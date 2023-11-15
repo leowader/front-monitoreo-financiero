@@ -10,7 +10,7 @@ import luis from "./assets/luis.jpg";
 import juan from "./assets/juan.jpg";
 import ChartMoneda from "./components/Moneda";
 import Acciones from "./components/Acciones";
-import AccionesTec from "./components/AccionesTec";
+// import AccionesTec from "./components/AccionesTec";
 
 function App() {
   const ingeniero = {
@@ -76,9 +76,12 @@ function App() {
       </h2>
       <ChartMoneda></ChartMoneda>
       <h2 className="flex justify-center mt-4 mb-5 font-bold text-2xl  p-2 ">
-        Acciones
+        Monitoreo de Acciones tecnologicas
+
       </h2>
-      <AccionesTec></AccionesTec>
+      <h3 className=" font-bold ml-5 text-xl">Selccione una accion </h3>      
+      <Acciones></Acciones>
+      {/* <AccionesTec></AccionesTec> */}
     </div>
   );
 }

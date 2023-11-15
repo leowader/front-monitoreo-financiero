@@ -16,34 +16,34 @@ function ChartDesempleo() {
   ];
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
-    console.log(res.data[1].datos);
+    // console.log(res.data[1].datos);
     const ipc = res.data[1].datos;
     data = ipc.map((ip, index) => {
       return { time: ip.ds, value: ip.yhat };
     });
-    console.log("Desempleo", data);
+    // console.log("Desempleo", data);
     setMidata(data);
   };
-  const getDolar = async () => {
-    const res = await axios.get(
-      "https://www.datos.gov.co/resource/32sa-8pi3.json"
-    );
-    console.log("--MONEDA--", res.data);
-  };
+  // const getDolar = async () => {
+  //   const res = await axios.get(
+  //     "https://www.datos.gov.co/resource/32sa-8pi3.json"
+  //   );
+  //   console.log("--MONEDA--", res.data);
+  // };
   // const doceHorasEnMilisegundos = 12 * 60 * 60 * 1000;
 
   if (loading === false) {
     getIndicadores();
     console.clear();
-    getDolar();
+    // getDolar();
     setLoading(true);
-    setInterval(getDolar, 50000);
+    // setInterval(getDolar, 50000);
   }
 
   useEffect(() => {
     const chartElement = document.createElement("div");
     chartContainerRef.current.appendChild(chartElement);
-    console.log("recargague");
+    // console.log("recargague");
 
     const resizeChart = () => {
       if (chartContainerRef.current) {
@@ -58,7 +58,7 @@ function ChartDesempleo() {
         textColor: "white",
         background: {
           type: "solid",
-          color: "#202123",
+          color: "#18191A",
         },
       },
       rightPriceScale: {
@@ -102,7 +102,7 @@ function ChartDesempleo() {
     if (midata) {
       series.setData(midata);
     } else {
-      console.log("mi data?", midata);
+      // console.log("mi data?", midata);
     }
     // series.setData(data);
     if (midata) {

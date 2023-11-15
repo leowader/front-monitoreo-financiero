@@ -6,9 +6,9 @@ export default function TablaPib({ columnas, defaultData }) {
 
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
-    console.log(res.data[2].datos);
+    // console.log(res.data[2].datos);
     const ipc = res.data[2].datos;
-    console.log("mi data2", ipc);
+    // console.log("mi data2", ipc);
     setMidata(ipc);
   };
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function TablaPib({ columnas, defaultData }) {
   //   if (midata) {
   //     defaultData = midata;
   //   }
-  console.log("res back", midata);
+  // console.log("res back", midata);
   if (midata) {
     defaultData = [...midata].reverse();
   }

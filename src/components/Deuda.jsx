@@ -21,12 +21,10 @@ const ChartDeuda = () => {
   const [loading, setLoading] = useState(false);
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.onrender.com/getindicadores");
-    console.log(res.data[3].datos);
+    // console.log(res.data[3].datos);
     const externa = res.data[3].datos;
     const inter = res.data[4].datos;
     const tot = res.data[5].datos;
-    // const nuevoArray = externa.map((element, index) => [element.yhat, inter[index], tot[index]]);
-    // console.log("nuevo array",nuevoArray);
     data = externa.map((ip, index) => {
       return { time: ip.ds, value: ip.yhat };
     });
@@ -36,7 +34,7 @@ const ChartDeuda = () => {
     dataTotal = tot.map((ip, index) => {
       return { time: ip.ds, value: ip.yhat };
     });
-    console.log("mi data DEUDA INTERNA", data);
+    // console.log("mi data DEUDA INTERNA", data);
     setMidata(data);
     setTotal(dataTotal);
     setInterna(dataInterna);
@@ -71,7 +69,7 @@ const ChartDeuda = () => {
       layout: {
         background: {
           type: "solid",
-          color: "#202123",
+          color: "#18191A",
         },
         textColor: "white",
       },
@@ -111,7 +109,7 @@ const ChartDeuda = () => {
       areaSeries2.setData(interna);
       areaSeries3.setData(total);
     } else {
-      console.log("mi data?", midata);
+      // console.log("mi data?", midata);
     }
 
     chartRef.current.subscribeCrosshairMove((param) => {
