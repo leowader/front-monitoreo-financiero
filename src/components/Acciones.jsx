@@ -6,6 +6,8 @@ export default function Acciones({ accion }) {
   const [adiCache, setadiadiCache] = useState([]);
   // const [prediccion, setPrediccion] = useState([]);
   const [ultimo, setUltimo] = useState(null);
+  const [ganancia, setGanancia] = useState(0);
+  const [perdidas, setPerdidas] = useState(0);
   // const [ganancias, setGanancias] = useState(null);
   const [valor, setValor] = useState(0);
   const [accionSelect, setAccionSelect] = useState({});
@@ -34,6 +36,15 @@ export default function Acciones({ accion }) {
       console.log("error", error);
     }
   };
+  const reset = () => {
+    setUltimo(null);
+    setAccionSelect(null);
+    setValor(0);
+    var inputElement = document.getElementById("valinvertir");
+
+    // Set the value of the input element to an empty string
+    inputElement.value = "";
+  };
   async function onPrediccion(params) {
     console.log("kee", params.symbol);
     //sirve
@@ -51,7 +62,7 @@ export default function Acciones({ accion }) {
       "ultimo",
       JSON.stringify(res.data.predicciones[res.data.predicciones.length - 2])
     );
-
+    calcularGanancias(res.data.predicciones[res.data.predicciones.length - 2]);
     //sirve
 
     // console.log("ultimo",res.data.data[res.data.data.length - 1]);
@@ -89,7 +100,7 @@ export default function Acciones({ accion }) {
   if (!adi) {
     return;
   }
-  const calcularGanancias = () => {
+  const calcularGanancias = (ultimo) => {
     const gan = (
       ((
         ((ultimo.yhat - accionSelect.price) / accionSelect.price) *
@@ -98,19 +109,26 @@ export default function Acciones({ accion }) {
         valor) /
       100
     ).toLocaleString();
-    if (gan > 0) {
-      return { ganancia: true, value: gan };
+    if (gan < 0) {
+      setPerdidas(gan);
     } else {
-      return { ganancia: false, value: gan };
+      setGanancia(gan);
     }
   };
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
-    setValor(
-      Number.isInteger(parseFloat(inputValue))
-        ? parseInt(inputValue, 10)
-        : parseFloat(inputValue)
-    );
+    if (isNaN(inputValue)) {
+      setValor(0);
+    }
+    if (inputValue > 0) {
+      setValor(
+        Number.isInteger(parseFloat(inputValue))
+          ? parseInt(inputValue, 10)
+          : parseFloat(inputValue)
+      );
+    } else {
+      setValor(0);
+    }
   };
   // console.log(adiCache);
   var accionesFiltrados =
@@ -180,6 +198,7 @@ export default function Acciones({ accion }) {
           <input
             type="number"
             step="0.01"
+            id="valinvertir"
             onChange={handleInputChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block lg:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="$1.000.000"
@@ -192,6 +211,14 @@ export default function Acciones({ accion }) {
             className="text-white bg-gradient-to-r mb-5 from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 "
           >
             Invertir
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={reset}
+            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 "
+          >
+            Reset
           </button>
         </div>
       </div>
@@ -222,27 +249,17 @@ export default function Acciones({ accion }) {
               alt=""
             />
           </div>
-          Accion: {accionSelect.symbol}
+          Accion: {accionSelect && accionSelect.symbol}
         </span>
         <span> inversion:${valor.toLocaleString()} </span>
       </div>
       <span className="font-bold flex  p-2 lg:p-0 w-28 text-[#06C270]">
         Ganancias:
-        <br />$
-        {ultimo
-          ? calcularGanancias().ganancia
-            ? calcularGanancias().value
-            : 0
-          : ""}{" "}
+        <br />${ultimo ? ganancia : ""}{" "}
       </span>
       <span className="font-bold w-28 flex lg:block p-2 lg:p-0 text-[#CF0921]">
         Perdidas:
-        <br />$
-        {ultimo
-          ? calcularGanancias().ganancia
-            ? 0
-            : calcularGanancias().value
-          : ""}{" "}
+        <br />${ultimo ? perdidas : ""}{" "}
       </span>
     </div>
   );
