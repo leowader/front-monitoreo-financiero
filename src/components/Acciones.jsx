@@ -121,32 +121,56 @@ export default function Acciones({ accion }) {
       : adiCache.filter(function (objeto) {
           return acciones.includes(objeto.symbol);
         });
+  var primeros20Elementos = adi
+    .filter(function (objeto) {
+      return objeto.price > 1;
+    })
+    .slice(0, 20);
+
+  // if (accionesFiltrados.length)
   // const porcentajesCrecimiento = calcularCrecimientoPorcentaje(nvdaData);
   // // console.log("acciiones", porcentajesCrecimiento);
-  console.log("ultimo dato", ultimo);
+
   return (
     <div className="lg:flex">
-     
       <div className="grid lg:grid-cols-4 grid-cols-1 lg:w-[900px] gap-2 p-5">
-        
-        {accionesFiltrados.map((acc, i) => (
-          <div
-            key={i}
-            className="flex items-center cursor-pointer p-4 w-auto bg-[#242526] rounded-lg overflow-hidden shadow hover:shadow-md"
-            onClick={() => setAccionSelect(acc)}
-          >
-            <div className="w-12 h-12 rounded-full bg-[#4E4F50] p-1 flex items-center justify-center">
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/013/167/057/original/investment-growth-3d-illustration-free-png.png"
-                alt=""
-              />
-            </div>
-            <div className="ml-3">
-              <p className="font-medium ">{acc.symbol}</p>
-              <p className="text-sm ">Price:${acc.price}</p>
-            </div>
-          </div>
-        ))}
+        {accionesFiltrados.length === 20
+          ? accionesFiltrados.map((acc, i) => (
+              <div
+                key={i}
+                className="flex items-center cursor-pointer p-4 w-auto bg-[#242526] rounded-lg overflow-hidden shadow hover:shadow-md"
+                onClick={() => setAccionSelect(acc)}
+              >
+                <div className="w-12 h-12 rounded-full bg-[#4E4F50] p-1 flex items-center justify-center">
+                  <img
+                    src="https://static.vecteezy.com/system/resources/previews/013/167/057/original/investment-growth-3d-illustration-free-png.png"
+                    alt=""
+                  />
+                </div>
+                <div className="ml-3">
+                  <p className="font-medium ">{acc.symbol}</p>
+                  <p className="text-sm ">Price:${acc.price}</p>
+                </div>
+              </div>
+            ))
+          : primeros20Elementos.map((acc, i) => (
+              <div
+                key={i}
+                className="flex items-center cursor-pointer p-4 w-auto bg-[#242526] rounded-lg overflow-hidden shadow hover:shadow-md"
+                onClick={() => setAccionSelect(acc)}
+              >
+                <div className="w-12 h-12 rounded-full bg-[#4E4F50] p-1 flex items-center justify-center">
+                  <img
+                    src="https://static.vecteezy.com/system/resources/previews/013/167/057/original/investment-growth-3d-illustration-free-png.png"
+                    alt=""
+                  />
+                </div>
+                <div className="ml-3">
+                  <p className="font-medium ">{acc.symbol}</p>
+                  <p className="text-sm ">Price:${acc.price}</p>
+                </div>
+              </div>
+            ))}
       </div>
       <div className="p-2 lg:p-0">
         <div className="mb-6">

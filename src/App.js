@@ -76,7 +76,7 @@ function App() {
       </h2>
       <ChartMoneda></ChartMoneda>
       <h2 className="flex justify-center mt-4 mb-5 font-bold text-2xl  p-2 ">
-        Monitoreo de Acciones tecnologicas
+        Monitoreo de Acciones 
 
       </h2>
       <h3 className=" font-bold ml-5 text-xl">Selccione una accion </h3>      
