@@ -48,8 +48,8 @@ export default function TablaPib({ columnas, defaultData }) {
   return (
     <div className="  ">
       <div className="relative overflow-x-auto sm:rounded-lg flex justify-center animate-fade-down">
-        <table className="text-sm   text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase dark:bg-[#4E4F50] dark:text-gray-400">
+        <table className="text-sm   text-left text-white dark:text-gray-400">
+          <thead className="text-xs text-white uppercase bg-[#4E4F50] dark:text-gray-400">
             <tr className=" w-10">
               {columnas.map((col, index) => (
                 <th scope="col" className="p-2 " key={index}>
@@ -64,7 +64,7 @@ export default function TablaPib({ columnas, defaultData }) {
                 <th
                   key={index}
                   scope="row"
-                  className="px-5 py-4 flex justify-center items-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="px-5 py-4 flex justify-center items-center font-medium text-white whitespace-nowrap dark:text-white"
                 >
                   <div className="flex justify-start w-full">
                     <div className="bg-[#3A3B3C] rounded-lg w-10 h-10 p-2 mr-2">
