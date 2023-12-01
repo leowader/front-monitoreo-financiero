@@ -48,7 +48,7 @@ function App() {
         <Cards ingeniero={ingeniero3}></Cards>
       </div>
 
-      <h1 className="mb-4 p-2 text-3xl font-extrabold flex justify-center text-gray-900 dark:text-white md:text-3xl lg:text-6xl">
+      <h1 className="mb-4 p-2 text-3xl font-extrabold flex justify-center text-white md:text-3xl lg:text-6xl">
         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 mr-2">
           Proyecto Monitoreo
         </span>{" "}
