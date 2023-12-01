@@ -155,15 +155,15 @@ const ChartDeuda = () => {
       <div className=" w-42  rounded-lg">
         <div className="flex">
           <div className=" mt-2 h-3 w-10 bg-[#26C6DA] rounded-lg"></div>
-          <span className="w-full ml-2">Deunda Total</span>
+          <span className="w-full ml-2">Deuda Total</span>
         </div>
         <div className="flex">
           <div className="mt-2 h-3 w-10 bg-[#52FF52] rounded-lg"></div>
-          <span className="w-full ml-2">Deunda Interna</span>
+          <span className="w-full ml-2">Deuda Interna</span>
         </div>
         <div className="flex">
           <div className="mt-2  h-3 w-10 bg-[#AB47BC] rounded-lg"></div>
-          <span className="w-full ml-2">Deunda Externa</span>
+          <span className="w-full ml-2">Deuda Externa</span>
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ function App() {
     carrera: "Ingenieria de sistemas",
     correo: "lacatano@unicesar.edu.co",
     dir: " Diagonal 18 # 27a 04    ",
-    telefono: 3152774623,
+    telefono: 3162357871,
   };
   return (
     <div className="App ">
