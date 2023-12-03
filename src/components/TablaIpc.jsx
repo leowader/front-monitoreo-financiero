@@ -7,7 +7,7 @@ export default function TablaIpc({ columnas, defaultData }) {
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[0].datos);
-    const ipc = res.data[0].datos;
+    const ipc = res.data[4].datos;
     // console.log("mi data2", ipc);
     setMidata(ipc);
   };

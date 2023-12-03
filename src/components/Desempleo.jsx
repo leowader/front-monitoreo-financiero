@@ -17,7 +17,7 @@ function ChartDesempleo() {
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[1].datos);
-    const ipc = res.data[1].datos;
+    const ipc = res.data[2].datos;
     data = ipc.map((ip, index) => {
       return { time: ip.ds, value: ip.yhat };
     });

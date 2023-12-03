@@ -9,8 +9,8 @@ export default function TablaDeuda({ columnas, defaultData }) {
     const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[1].datos);
     const externa = res.data[7].datos;
-    const inter = res.data[4].datos;
-    const tot = res.data[5].datos;
+    const inter = res.data[5].datos;
+    const tot = res.data[0].datos;
     // console.log("mi data2", ipc);
     setMidata(externa);
     setInterna(inter);
@@ -24,7 +24,7 @@ export default function TablaDeuda({ columnas, defaultData }) {
   //   }
   // console.log("res back", midata);
   if (midata) {
-    defaultData = [...midata].reverse();
+    defaultData = [...midata];
   }
   const [currentPage, setCurrentPage] = useState(1); //pagina actual
   const recordsPerPage = 5; //numero de filas

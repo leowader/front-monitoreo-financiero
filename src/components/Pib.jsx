@@ -18,7 +18,7 @@ const ChartPib = () => {
   const getIndicadores = async () => {
     const res = await axios.get("https://api-monitoreo.up.railway.app/getindicadores");
     // console.log(res.data[2].datos);
-    const ipc = res.data[2].datos;
+    const ipc = res.data[6].datos;
     data = ipc.map((ip, index) => {
       // console.log("fecha pip", ip.ds);
       return { time: ip.ds, value: ip.yhat };
